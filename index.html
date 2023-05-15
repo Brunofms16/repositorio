@@ -1,196 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Formulário de perguntas</title>
-	<style>
-		/* Estilos CSS */
-*{ 
-    font-family: arial;
-    margin : 0;
-    padding: 0;
-    box-sizing: border-box;
-    color : #f3f3f3;
-    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: black;
+        }
 
-}
-body {
-  
-    background: #333;
-}
-h1 {
-    margin-bottom: 40px;
-}
-p {
-    overflow: hidden;
-
-  white-space: nowrap;
- 
-    font-size:1.2em
-}
-.container{display:flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    min-height: 400px;
-    background: #444;
-   max-width:800px;
-   margin: 0 auto;
-}
-button {
-  background: green;
-  color:white;
-  padding: .4em 2em;
-  border: none;
-  border-radius: 5px;
-}
-#question-1{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    padding:2em;
-background: rgb(37, 37, 37);
-}
-#question-2{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    padding:2em;
-background: rgb(37, 37, 37);
-}
-#question-3{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    padding:2em;
-background: rgb(37, 37, 37);
-}
-.typed-out{
-    margin-top: 20px;
-  overflow: hidden;
-  border-right: .15em solid rgba(255, 166, 0, 0);
-  white-space: nowrap;
-  animation: typing 2.5s steps(50, end) forwards;
-  font-size: 2rem;
-  width: 0;
-  color:red;
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-
-    #results {
-        display: none;
-        text-align: center;
-    width: 80%;
-    }
-
-      
-	</style>
+        h1{
+            font-size : 40px;
+            text-align: center;
+            color: red;
+        }
+     
+    </style>
 </head>
 <body>
-	<div class="container">
-       
-        <form>
-            <div id="question-1">
-                <label for="name">Qual é o seu nome?</label>
-                <input type="text" id="name" required>
-                <button type="button" onclick="nextQuestion()">Próxima</button>
-            </div>
-            <div id="question-2" style="display: none;">
-                <label for="age">Qual é a sua idade?</label>
-                <input type="number" id="age" required>
-                <button type="button" onclick="nextQuestion()">Próxima</button>
-            </div>
-            <div id="question-3" style="display: none;">
-                <label for="interests">Do que você gosta?</label>
-                <input type="text" id="interests" required>
-                <button type="button" onclick="showResults()">Enviar</button>
-            </div>
-        </form>
-        <div id="results" >
+    <div class="container">
+    <img src="chainsaw-man-future-devil.png" alt="">
+  <div id="text">
     
-            <p>Ola <span id="result-name"></span>, então 
-            você tem <span id="result-age"><br></span> anos e gosta de <span id="result-interests"></span> <br> Saiba que capturamos seu IP e seus dados via upload <br>
-            Aliás seu endereço IP é <br><span id="ip" class="typed-out"></span></p>
-            
-        </div>
-    </div>
-	<script>
-		let currentQuestion = 1;
 
-function nextQuestion() {
-  // Oculta a pergunta anterior
-  document.getElementById(`question-${currentQuestion}`).style.display = "none";
-  
-  // Exibe a próxima pergunta
-  currentQuestion++;
-  document.getElementById(`question-${currentQuestion}`).style.display = "block";
+  </div>
+
+
+    <script>
+window.onclick = function() {
+    let text = document.getElementById("text")
+
+    setTimeout(function(){
+        var paragrafo = document.createElement('h1')
+console.log(paragrafo)
+
+paragrafo.textContent = "O Futuro é .... "
+text.appendChild(paragrafo)
+
+const futuro = setInterval(function(){
+        var paragrafo = document.createElement('h1')
+console.log(paragrafo)
+
+paragrafo.textContent = "O FUTURO È PICA!"
+text.appendChild(paragrafo)
+    console.log("O FUTURO È PICA!")
+    
+}, 1300)
+setTimeout (function(){
+
+    setTimeout(function() { 
+        alert("O FUTURO È PICA!")
+        
+    },3000)
+       
+    },10000)
+    setTimeout (function(){
+        clearInterval(futuro)
+        
+        var paragrafo = document.createElement('h1')
+console.log(paragrafo)
+
+paragrafo.textContent = "O FUTURO NÃO È PICA!"
+text.appendChild(paragrafo)
+    console.log("O FUTURO NÃO È PICA!")
+    },40000)
+    
+    },1000) 
+   
 }
 
-function showResults() {
-  // Obtém os valores das respostas
-  const name = document.getElementById("name").value;
-  const age = document.getElementById("age").value;
-  const interests = document.getElementById("interests").value;
-  
-  // Exibe os resultados
-  document.getElementById("result-name").textContent = name;
-  document.getElementById("result-age").textContent = age;
-  document.getElementById("result-interests").textContent = interests;
-  
-  // Obtém o endereço IP
-  fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-      // Exibe o endereço IP
-      document.getElementById("ip").textContent = data.ip;
-    })
-    .catch(error => console.error(error));
-  
-  document.getElementById("results").style.display = "block";
-  
-  // Oculta a última pergunta
-  document.getElementById(`question-${currentQuestion}`).style.display = "none";
-}
-function showResults() {
-  // Obtém os valores das respostas
-  const name = document.getElementById("name").value;
-  const age = document.getElementById("age").value;
-  const interests = document.getElementById("interests").value;
-  
-  // Exibe os resultados
-  document.getElementById("result-name").textContent = name;
-  document.getElementById("result-age").textContent = age;
-  document.getElementById("result-interests").textContent = interests;
-  
-  alert("[ERROR_404]Google Chrome has found security flaws , your data may be compromised , would you like to continue");
-  
-  // Obtém o endereço IP
-  fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-      // Exibe o endereço IP
-      document.getElementById("ip").textContent = data.ip;
-    })
-    .catch(error => console.error(error));
-  
-  document.getElementById("results").style.display = "block";
-  
-  // Oculta a última pergunta
-  document.getElementById(`question-${currentQuestion}`).style.display = "none";
-  
-  
-}
-
-	</script>
+    </script>
+</div>
 </body>
 </html>
